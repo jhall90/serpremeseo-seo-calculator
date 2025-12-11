@@ -12,7 +12,7 @@ The full source code, build system, and development workflow are maintained in a
 
 Fully interactive demo:
 
-https://jhall90.github.io/serpremeseo-seo-calculator/demo/
+https://jhall90.github.io/serpremeseo-seo-calculator/
 
 ---
 
