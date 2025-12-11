@@ -23,10 +23,8 @@ The full source code, build system, and development workflow are maintained in a
 
 After pushing updates to this repository, the calculator may be loaded via CDN.
 
-Replace `USERNAME` with your GitHub username:
-
 ```html
-<script src="https://cdn.jsdelivr.net/gh/USERNAME/serpremeseo-seo-calculator-public/dist/seo-calculator.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator/dist/seo-calculator.min.js"></script>
 
 <seo-calculator></seo-calculator>
 ```
@@ -40,7 +38,7 @@ Place the script **before** using the `<seo-calculator>` element.
 Include the script, then place the custom element anywhere in the document:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/USERNAME/serpremeseo-seo-calculator-public/dist/seo-calculator.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator-public/dist/seo-calculator.min.js"></script>
 
 <body>
     <seo-calculator></seo-calculator>
@@ -56,8 +54,8 @@ This will render the calculator using its default UI and any active CSS variable
 For automatic brand-color theming, include the SERPremeSEO Brand Loader **before** the calculator:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/USERNAME/serpremeseo-brand-loader/dist/brand-loader.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/USERNAME/serpremeseo-seo-calculator-public/dist/seo-calculator.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-brand-loader/dist/brand-loader.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator-public/dist/seo-calculator.min.js"></script>
 
 <seo-calculator></seo-calculator>
 ```
@@ -100,7 +98,7 @@ git push origin v1.0.0
 Load a specific version via CDN:
 
 ```
-https://cdn.jsdelivr.net/gh/USERNAME/serpremeseo-seo-calculator-public@v1.0.0/dist/seo-calculator.min.js
+https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator-public@v1.0.0/dist/seo-calculator.min.js
 ```
 
 ---
