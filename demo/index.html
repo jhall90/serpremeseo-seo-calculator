@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>SEO Calculator Demo</title>
+
+    <!-- Fake client theme -->
+    <style>
+        :root {
+            /* Brand Gradient (top = dark, bottom = lighter accent) */
+            --brand-top: #013740;
+            --brand-bottom: #2B5C64;
+
+            /* Chart colors (use brand-friendly accents) */
+            --chart-onpage: #D8724E;   /* warm accent orange */
+            --chart-tech: #DFA07F;     /* peach/tan */
+            --chart-offpage: #CCE2A2;  /* soft green */
+
+            /* Fonts */
+            --font-family: "Lato", sans-serif;
+            --font-header: "DM Serif Display", serif;
+            --font-subheader: "Montserrat", sans-serif;
+
+            /* Light Mode */
+            --bg-light: #F9F9F9;
+            --panel-light: #FFFFFF;
+            --text-light: #013740;
+
+            /* Dark Mode (brand-appropriate deep tones) */
+            --bg-dark: #013740;
+            --panel-dark: #2B5C64;
+            --text-dark: #F9F9F9;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-light);
+            color: var(--text-light);
+            padding: 40px;
+        }
+    </style>
+
+    <!-- Client fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Auto Branding -->
+    <seo-calculator theme="system"></seo-calculator>
+
+    <!-- With Custom Branding -->
+    <!--<seo-calculator
+        brand-top="#0e2a59"
+        brand-bottom="#163a7b"
+
+        chart-onpage="#00cc66"
+        chart-tech="#ff6a00"
+        chart-offpage="#ffcc00"
+
+        font-family="'Poppins', sans-serif"
+
+        bg-light="#ffffff"
+        panel-light="#f8fafc"
+        text-light="#1e293b"
+
+        bg-dark="#0f172a"
+        panel-dark="#1e293b"
+        text-dark="#f1f5f9"
+
+        theme="system"
+
+        button-bg="#1a4b84"
+        button-text="#ffffff"
+    >
+    </seo-calculator>-->
+
+    <script type="module" src="./seo-calculator.js"></script>
+</body>
+</html>
