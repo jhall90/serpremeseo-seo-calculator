@@ -8,6 +8,14 @@ The full source code, build system, and development workflow are maintained in a
 
 ---
 
+## Live Demo (GitHub Pages)
+
+Fully interactive demo:
+
+https://jhall90.github.io/serpremeseo-seo-calculator/demo/
+
+---
+
 ## Features
 
 -   Drop-in custom element (`<seo-calculator>`)
