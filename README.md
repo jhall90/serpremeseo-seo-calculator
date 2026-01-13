@@ -32,7 +32,7 @@ https://jhall90.github.io/serpremeseo-seo-calculator/
 After pushing updates to this repository, the calculator may be loaded via CDN.
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator/dist/seo-calculator.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator@latest/dist/seo-calculator.min.js"></script>
 
 <seo-calculator></seo-calculator>
 ```
