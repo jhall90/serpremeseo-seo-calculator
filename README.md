@@ -18,12 +18,12 @@ https://jhall90.github.io/serpremeseo-seo-calculator/
 
 ## Features
 
--   Drop-in custom element (`<seo-calculator>`)
--   Works in WordPress, Webflow, Wix, Squarespace, Shopify, or plain HTML
--   No dependencies required
--   Supports automatic branding when paired with the SERPremeSEO Brand Loader
--   Loadable via CDN for simple integration
--   Shadow DOM isolation for predictable styling
+- Drop-in custom element (`<seo-calculator>`)
+- Works in WordPress, Webflow, Wix, Squarespace, Shopify, or plain HTML
+- No dependencies required
+- Supports automatic branding when paired with the SERPremeSEO Brand Loader
+- Loadable via CDN for simple integration
+- Shadow DOM isolation for predictable styling
 
 ---
 
@@ -34,7 +34,7 @@ After pushing updates to this repository, the calculator may be loaded via CDN.
 ```html
 <script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator@latest/dist/seo-calculator.min.js"></script>
 
-<seo-calculator></seo-calculator>
+<seo-calculator theme="system"></seo-calculator>
 ```
 
 Place the script **before** using the `<seo-calculator>` element.
@@ -46,10 +46,10 @@ Place the script **before** using the `<seo-calculator>` element.
 Include the script, then place the custom element anywhere in the document:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator-public/dist/seo-calculator.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator@latest/dist/seo-calculator.min.js"></script>
 
 <body>
-    <seo-calculator></seo-calculator>
+    <seo-calculator theme="system"></seo-calculator>
 </body>
 ```
 
@@ -57,26 +57,97 @@ This will render the calculator using its default UI and any active CSS variable
 
 ---
 
-## Optional: Brand Loader Integration
+## Advanced Styling (Custom Branding)
 
-For automatic brand-color theming, include the SERPremeSEO Brand Loader **before** the calculator:
+The calculator is styled using CSS Variables. You can pass your brand colors directly into the `style` attribute.
+
+### Standard Manual Branding
+
+| Variable                | Description                                                         |
+| :---------------------- | :------------------------------------------------------------------ |
+| `theme`                 | 'system' should be used unless you want to force dark or light mode |
+| `--brand-top`           | Gradient start color for brand elements                             |
+| `--brand-bottom`        | Gradient end color for brand elements                               |
+| `--chart-onpage`        | Color used for On-Page SEO data segments                            |
+| `--chart-tech`          | Color used for Technical SEO data segments                          |
+| `--bg-light`            | Main background color in Light Mode                                 |
+| `--panel-light`         | Inner card background in Light Mode                                 |
+| `--bg-dark`             | Main background color in Dark Mode                                  |
+| `--font-family`         | Typographic family used across the UI                               |
+| `--ui-option-font-size` | Font size for dropdowns and inputs                                  |
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-brand-loader/dist/brand-loader.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator-public/dist/seo-calculator.min.js"></script>
-
-<seo-calculator></seo-calculator>
+<seo-calculator
+    theme="light"
+    style="
+    --brand-top: #013740;
+    --brand-bottom: #2B5C64;
+    --chart-onpage: #D8724E;
+    --chart-tech: #DFA07F;
+    --chart-offpage: #B5C4C9;
+    --chart-reporting: #94A3B8;
+    --font-family: 'Lato', sans-serif;
+  "></seo-calculator>
 ```
 
-This enables the calculator to inherit:
+### Elementor (WordPress) Integration because I personally like them. Not Sponsored.
 
--   `--brand-top`
--   `--brand-bottom`
--   `--chart-onpage`
--   `--chart-tech`
--   `--chart-offpage`
--   Light/Dark backgrounds
--   Typography variables
+Use this configuration to automatically sync the calculator with your Elementor Site Settings:
+
+```html
+<seo-calculator
+    theme="system"
+    style="
+    /* -----------------------------------------------------------
+       ELEMENTOR GLOBAL VARIABLE REFERENCE (Site-Wide)
+       
+       COLORS:
+       --e-global-color-primary      (Main brand color)
+       --e-global-color-secondary    (Supporting brand color)
+       --e-global-color-text         (Body text color)
+       --e-global-color-accent       (Link/Button accent color)
+       
+       TYPOGRAPHY (Family):
+       --e-global-typography-primary-font-family
+       --e-global-typography-secondary-font-family
+       --e-global-typography-text-font-family
+       --e-global-typography-accent-font-family
+
+       TYPOGRAPHY (Sizes/Weights for 'Primary' as example):
+       --e-global-typography-primary-font-size
+       --e-global-typography-primary-font-weight
+       --e-global-typography-primary-line-height
+
+       CUSTOM GLOBALS:
+       Custom colors created in Site Settings usually look like: 
+       --e-global-color-7deaba8 (Hex ID generated by Elementor)
+    ----------------------------------------------------------- */
+
+    /* BRAND COLORS */
+    --brand-top: var(--e-global-color-primary);
+    --brand-bottom: var(--e-global-color-secondary);
+
+    /* CHART COLORS */
+    --chart-onpage: #D8724E;
+    --chart-tech: #DFA07F;
+    --chart-offpage: #B5C4C9;
+    --chart-reporting: #94A3B8;
+
+    /* UI - LIGHT THEME */
+    --bg-light: #F9F9F9;
+    --panel-light: #FFFFFF;
+    --text-light: var(--e-global-color-text);
+
+    /* UI - DARK THEME */
+    --bg-dark: #013740;
+    --panel-dark: #2B5C64;
+    --text-dark: #F9F9F9;
+
+    /* FONT & SIZE */
+    --font-family: var(--e-global-typography-text-font-family, inherit);
+    --ui-option-font-size: 13.3333px;
+  "></seo-calculator>
+```
 
 ---
 
@@ -85,10 +156,10 @@ This enables the calculator to inherit:
 This repository contains **only the distributable build**.
 The following items are intentionally excluded:
 
--   Source JavaScript
--   Development files
--   Build pipeline
--   Testing utilities
+- Source JavaScript
+- Development files
+- Build pipeline
+- Testing utilities
 
 To request access, report issues, or inquire about collaboration, contact the repository owner.
 
