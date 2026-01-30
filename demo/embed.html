@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>SEO Calculator Embed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            max-width: 760px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 200px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            padding: 1rem;
+            white-space: pre;
+            tab-size: 4;
+        }
+
+        select, button {
+            margin-top: 1rem;
+            padding: 0.5rem 0.75rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Embed the SEO Pricing Calculator</h1>
+
+    <label>
+        Branding mode:
+        <select id="branding">
+            <option value="brand">Brand</option>
+            <option value="minimal">Minimal</option>
+            <option value="off">Off (neutral)</option>
+        </select>
+    </label>
+
+    <textarea id="embedCode" readonly></textarea>
+
+    <button id="copyBtn">Copy embed code</button>
+
+    <script>
+        const textarea = document.getElementById("embedCode");
+        const brandingSelect = document.getElementById("branding");
+
+        function generateEmbedCode() {
+            const branding = brandingSelect.value;
+
+            const lines = [
+                '<script src="https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator@latest/dist/seo-calculator.min.js"><\/script>',
+                '',
+                '<seo-calculator',
+                '    branding="' + branding + '"',
+                '    theme="system"',
+                '></seo-calculator>',
+            ];
+
+            textarea.value = lines.join("\n");
+        }
+
+        brandingSelect.addEventListener("change", generateEmbedCode);
+
+        document.getElementById("copyBtn").addEventListener("click", () => {
+            textarea.select();
+            document.execCommand("copy");
+        });
+
+        generateEmbedCode();
+    </script>
+
+</body>
+</html>

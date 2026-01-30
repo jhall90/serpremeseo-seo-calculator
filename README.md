@@ -1,3 +1,5 @@
+Here is the updated documentation, formatted exactly like your previous version with the consistent use of horizontal rules, bolded callouts, and clean code blocks.
+
 # SERPremeSEO SEO Calculator (For Public Distribution)
 
 A lightweight, framework-agnostic SEO Pricing Calculator delivered as a Web Component.
@@ -21,9 +23,10 @@ https://jhall90.github.io/serpremeseo-seo-calculator/
 - Drop-in custom element (`<seo-calculator>`)
 - Works in WordPress, Webflow, Wix, Squarespace, Shopify, or plain HTML
 - No dependencies required
-- Supports automatic branding when paired with the SERPremeSEO Brand Loader
 - Loadable via CDN for simple integration
 - Shadow DOM isolation for predictable styling
+- Supports multiple **branding modes** for agencies, publishers, and embeds
+- Emits **custom events** for analytics and conversion tracking
 
 ---
 
@@ -57,96 +60,149 @@ This will render the calculator using its default UI and any active CSS variable
 
 ---
 
+## Branding Modes
+
+The calculator supports controlled branding presets depending on your use case.
+
+| Branding Mode | Intended Use Case                | Behavior                                 |
+| :------------ | :------------------------------- | :--------------------------------------- |
+| `brand`       | Agency sites / owned properties  | Full branding and visual overrides       |
+| `minimal`     | Blogs / educational resources    | Limited branding and neutral visuals     |
+| `off`         | Neutral publishers / comparisons | No branding overrides and no attribution |
+
+**Example:**
+
+```html
+<seo-calculator
+    branding="minimal"
+    theme="system"></seo-calculator>
+```
+
+---
+
+## Events (Analytics & Conversion Tracking)
+
+The calculator emits events that you can listen to for analytics, lead scoring, or “intent” tracking.
+
+### seo-calculator:ready
+
+Fires once after the calculator initializes.
+
+```javascript
+document.addEventListener("seo-calculator:ready", (e) => {
+    console.log("Calculator ready:", e.detail);
+    // Access e.detail.branding, e.detail.theme, e.detail.version
+});
+```
+
+### seo-calculator:update
+
+Fires when meaningful calculator inputs change (deduped internally).
+
+```javascript
+document.addEventListener("seo-calculator:update", (e) => {
+    console.log("Calculator updated:", e.detail);
+
+    // Example: capture totals
+    const monthly = e.detail?.totals?.monthly;
+    const oneTime = e.detail?.totals?.oneTime;
+
+    // Send this into your analytics stack (GA4, Meta Pixel, etc.)
+});
+```
+
+---
+
 ## Advanced Styling (Custom Branding)
 
 The calculator is styled using CSS Variables. You can pass your brand colors directly into the `style` attribute.
 
 ### Standard Manual Branding
 
-| Variable                | Description                                                         |
-| :---------------------- | :------------------------------------------------------------------ |
-| `theme`                 | 'system' should be used unless you want to force dark or light mode |
-| `--brand-top`           | Gradient start color for brand elements                             |
-| `--brand-bottom`        | Gradient end color for brand elements                               |
-| `--chart-onpage`        | Color used for On-Page SEO data segments                            |
-| `--chart-tech`          | Color used for Technical SEO data segments                          |
-| `--bg-light`            | Main background color in Light Mode                                 |
-| `--panel-light`         | Inner card background in Light Mode                                 |
-| `--bg-dark`             | Main background color in Dark Mode                                  |
-| `--font-family`         | Typographic family used across the UI                               |
-| `--ui-option-font-size` | Font size for dropdowns and inputs                                  |
+| Variable                | Description                                    |
+| :---------------------- | :--------------------------------------------- |
+| `theme`                 | Use 'system' unless forcing light or dark mode |
+| `--brand-top`           | Gradient start color for brand elements        |
+| `--brand-bottom`        | Gradient end color for brand elements          |
+| `--chart-onpage`        | Color used for On-Page SEO data segments       |
+| `--chart-tech`          | Color used for Technical SEO data segments     |
+| `--chart-offpage`       | Color used for Off-Page SEO data segments      |
+| `--chart-reporting`     | Color used for Reporting data segments         |
+| `--bg-light`            | Main background color in Light Mode            |
+| `--panel-light`         | Inner card background in Light Mode            |
+| `--text-light`          | Text color in Light Mode                       |
+| `--bg-dark`             | Main background color in Dark Mode             |
+| `--panel-dark`          | Inner card background in Dark Mode             |
+| `--text-dark`           | Text color in Dark Mode                        |
+| `--font-family`         | Typographic family used across the UI          |
+| `--ui-option-font-size` | Font size for dropdowns and inputs             |
 
 ```html
 <seo-calculator
+    branding="brand"
     theme="light"
     style="
-    --brand-top: #013740;
-    --brand-bottom: #2B5C64;
-    --chart-onpage: #D8724E;
-    --chart-tech: #DFA07F;
-    --chart-offpage: #B5C4C9;
-    --chart-reporting: #94A3B8;
-    --font-family: 'Lato', sans-serif;
-  "></seo-calculator>
+        --brand-top: #013740;
+        --brand-bottom: #2B5C64;
+        --chart-onpage: #D8724E;
+        --chart-tech: #DFA07F;
+        --chart-offpage: #B5C4C9;
+        --chart-reporting: #94A3B8;
+        --font-family: 'Lato', sans-serif;
+    "></seo-calculator>
 ```
 
-### Elementor (WordPress) Integration because I personally like them. Not Sponsored.
+---
+
+## Elementor (WordPress) Integration because I personally like them. Not Sponsored.
 
 Use this configuration to automatically sync the calculator with your Elementor Site Settings:
 
 ```html
 <seo-calculator
+    branding="brand"
     theme="system"
     style="
-    /* -----------------------------------------------------------
-       ELEMENTOR GLOBAL VARIABLE REFERENCE (Site-Wide)
-       
-       COLORS:
-       --e-global-color-primary      (Main brand color)
-       --e-global-color-secondary    (Supporting brand color)
-       --e-global-color-text         (Body text color)
-       --e-global-color-accent       (Link/Button accent color)
-       
-       TYPOGRAPHY (Family):
-       --e-global-typography-primary-font-family
-       --e-global-typography-secondary-font-family
-       --e-global-typography-text-font-family
-       --e-global-typography-accent-font-family
+        /* -----------------------------------------------------------
+           ELEMENTOR GLOBAL VARIABLE REFERENCE (Site-Wide)
+        ----------------------------------------------------------- */
 
-       TYPOGRAPHY (Sizes/Weights for 'Primary' as example):
-       --e-global-typography-primary-font-size
-       --e-global-typography-primary-font-weight
-       --e-global-typography-primary-line-height
+        /* BRAND COLORS */
+        --brand-top: var(--e-global-color-primary);
+        --brand-bottom: var(--e-global-color-secondary);
 
-       CUSTOM GLOBALS:
-       Custom colors created in Site Settings usually look like: 
-       --e-global-color-7deaba8 (Hex ID generated by Elementor)
-    ----------------------------------------------------------- */
+        /* CHART COLORS */
+        --chart-onpage: #D8724E;
+        --chart-tech: #DFA07F;
+        --chart-offpage: #B5C4C9;
+        --chart-reporting: #94A3B8;
 
-    /* BRAND COLORS */
-    --brand-top: var(--e-global-color-primary);
-    --brand-bottom: var(--e-global-color-secondary);
+        /* UI - LIGHT THEME */
+        --bg-light: #F9F9F9;
+        --panel-light: #FFFFFF;
+        --text-light: var(--e-global-color-text);
 
-    /* CHART COLORS */
-    --chart-onpage: #D8724E;
-    --chart-tech: #DFA07F;
-    --chart-offpage: #B5C4C9;
-    --chart-reporting: #94A3B8;
+        /* UI - DARK THEME */
+        --bg-dark: #013740;
+        --panel-dark: #2B5C64;
+        --text-dark: #F9F9F9;
 
-    /* UI - LIGHT THEME */
-    --bg-light: #F9F9F9;
-    --panel-light: #FFFFFF;
-    --text-light: var(--e-global-color-text);
+        /* FONT & SIZE */
+        --font-family: var(--e-global-typography-text-font-family, inherit);
+        --ui-option-font-size: 13.3333px;
+    "></seo-calculator>
+```
 
-    /* UI - DARK THEME */
-    --bg-dark: #013740;
-    --panel-dark: #2B5C64;
-    --text-dark: #F9F9F9;
+---
 
-    /* FONT & SIZE */
-    --font-family: var(--e-global-typography-text-font-family, inherit);
-    --ui-option-font-size: 13.3333px;
-  "></seo-calculator>
+## Neutral Publisher Embed (Branding Off)
+
+If you are a publisher or want a neutral embed (no branding or attribution), use:
+
+```html
+<seo-calculator
+    branding="off"
+    theme="system"></seo-calculator>
 ```
 
 ---
@@ -177,7 +233,7 @@ git push origin v1.0.0
 Load a specific version via CDN:
 
 ```
-https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator-public@v1.0.0/dist/seo-calculator.min.js
+https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator@v1.0.0/dist/seo-calculator.min.js
 ```
 
 ---
@@ -187,7 +243,6 @@ https://cdn.jsdelivr.net/gh/jhall90/serpremeseo-seo-calculator-public@v1.0.0/dis
 ```
 /
 ├── dist/
-│   ├── seo-calculator.js
 │   └── seo-calculator.min.js
 │
 ├── demo/
